@@ -24,8 +24,8 @@ def set_background(image_file):
         .stApp {{
             background:
                 linear-gradient(
-                    rgba(0, 0, 0, 0.55),
-                    rgba(0, 0, 0, 0.55)
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.6)
                 ),
                 url("data:image/jpg;base64,{encoded}");
             background-size: cover;
@@ -40,44 +40,47 @@ def set_background(image_file):
 set_background("river_wallpaper.jpg")
 
 # ==================================================
-# Custom CSS Styling (Balanced Hierarchy)
+# Custom CSS Styling
 # ==================================================
 st.markdown("""
 <style>
 .block-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    max-width: 1200px;
 }
 
+/* Typography */
 .big-title {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 700;
     color: #ffffff;
+    margin-bottom: 0.2em;
 }
 
 .subtitle {
-    font-size: 17px;
+    font-size: 16px;
     color: #e5e7eb;
 }
 
-/* HERO CARD (Title only) */
+/* HERO CARD */
 .hero-card {
-    padding: 2em;
-    border-radius: 18px;
+    padding: 2em 2.2em;
+    border-radius: 20px;
     background: linear-gradient(
-        rgba(15, 23, 42, 0.92),
+        rgba(15, 23, 42, 0.95),
         rgba(15, 23, 42, 0.88)
     );
-    margin-bottom: 1.8em;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    margin-bottom: 1.6em;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
 }
 
-/* SOFT CARD (About & Inputs) */
+/* SOFT SECTIONS */
 .soft-card {
-    padding: 1.4em 1.6em;
-    border-radius: 14px;
+    padding: 1.4em 1.8em;
+    border-radius: 16px;
     background: rgba(15, 23, 42, 0.65);
-    margin-bottom: 1.2em;
+    margin-bottom: 1.3em;
 }
 
 /* Inputs */
@@ -85,7 +88,8 @@ st.markdown("""
     background-color: #020617 !important;
     color: #f8fafc !important;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 0.4em 0.6em;
 }
 
 /* Button */
@@ -93,21 +97,27 @@ st.markdown("""
     background: linear-gradient(135deg, #2563eb, #16a34a);
     color: white;
     font-weight: 600;
-    border-radius: 14px;
-    padding: 0.7em 1.6em;
-    margin-top: 1em;
+    border-radius: 16px;
+    padding: 0.7em 1.8em;
+    margin-top: 1.2em;
+    border: none;
 }
 
 /* Result */
 .result-card {
-    padding: 1.8em;
-    border-radius: 18px;
+    padding: 1.9em;
+    border-radius: 20px;
     background: linear-gradient(135deg, #2563eb, #16a34a);
     color: white;
     font-size: 24px;
     font-weight: 700;
     text-align: center;
     margin-top: 1.8em;
+}
+
+/* Small text */
+.caption {
+    opacity: 0.85;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -152,7 +162,7 @@ except Exception:
     st.stop()
 
 # ==================================================
-# Water Quality Inputs
+# Water Quality Inputs (Calm Working Area)
 # ==================================================
 st.markdown("""
 <div class="soft-card">
@@ -162,13 +172,13 @@ st.markdown("""
 col1, col2 = st.columns(2)
 
 with col1:
-    temperature = st.number_input("🌡 Temperature (°C)", 20.0, 40.0, 28.0)
-    ph = st.number_input("⚗️ pH", 0.0, 14.0, 7.0)
-    do = st.number_input("💧 Dissolved Oxygen (mg/L)", 0.0, 15.0, 6.5)
+    temperature = st.number_input("Temperature (°C)", 20.0, 40.0, 28.0)
+    ph = st.number_input("pH", 0.0, 14.0, 7.0)
+    do = st.number_input("Dissolved Oxygen (mg/L)", 0.0, 15.0, 6.5)
 
 with col2:
-    cdc = st.number_input("🔌 Conductivity (µS/cm)", 0.0, 5000.0, 500.0)
-    turbidity = st.number_input("🌫 Turbidity (NTU)", 0.0, 500.0, 10.0)
+    cdc = st.number_input("Conductivity (µS/cm)", 0.0, 5000.0, 500.0)
+    turbidity = st.number_input("Turbidity (NTU)", 0.0, 500.0, 10.0)
 
 # ==================================================
 # Prediction
@@ -206,10 +216,9 @@ st.markdown("</div>", unsafe_allow_html=True)
 # ==================================================
 st.caption(
     "⚠️ Predictions are based on historical Penang river data and are intended "
-    "for decision-support purposes only, not as a replacement for laboratory analysis."
-)
+    "for decision-support purposes only.")
 
 st.markdown("---")
 st.caption(
-    "CDS590 Consultancy Project and Practicum • Predictive Modelling under Data Scarcity •"
+    "CDS590 Consultancy Project and Practicum • Predictive Modelling under Data Scarcity"
 )
