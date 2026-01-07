@@ -24,8 +24,8 @@ def set_background(image_file):
         .stApp {{
             background:
                 linear-gradient(
-                    rgba(0, 0, 0, 0.6),
-                    rgba(0, 0, 0, 0.6)
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2)
                 ),
                 url("data:image/jpg;base64,{encoded}");
             background-size: cover;
@@ -73,6 +73,7 @@ st.markdown("""
     );
     margin-bottom: 1.6em;
     box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    text-align: center;
 }
 
 /* SOFT SECTIONS */
@@ -131,18 +132,10 @@ st.markdown("""
   <div class="subtitle">
     Penang Rivers • Gradient Boosting • Copula-based Monte Carlo Simulation • 2026
   </div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# About Section
-# ==================================================
-st.markdown("""
-<div class="soft-card">
-<b>About this application</b><br><br>
-This application predicts <b>microplastic concentration (particles/L)</b>
-using physicochemical river water quality parameters.<br><br>
-<b>Purpose:</b> Decision-support tool under data scarcity conditions.
+ <div class="subtitle">
+    <br>This application predicts <b>microplastic concentration (particles/L)</b>
+    using physicochemical river water quality parameters.<br>
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -172,13 +165,13 @@ st.markdown("""
 col1, col2 = st.columns(2)
 
 with col1:
-    temperature = st.number_input("Temperature (°C)", 20.0, 40.0, 28.0)
+    temperature = st.number_input("Temperature (°C)", 10.0, 50.0, 28.0)
     ph = st.number_input("pH", 0.0, 14.0, 7.0)
     do = st.number_input("Dissolved Oxygen (mg/L)", 0.0, 15.0, 6.5)
 
 with col2:
-    cdc = st.number_input("Conductivity (µS/cm)", 0.0, 5000.0, 500.0)
-    turbidity = st.number_input("Turbidity (NTU)", 0.0, 500.0, 10.0)
+    cdc = st.number_input("Conductivity (µS/cm)", 0.0, 50000.0, 500.0)
+    turbidity = st.number_input("Turbidity (NTU)", 0.0, 2000.0, 10.0)
 
 # ==================================================
 # Prediction
@@ -220,5 +213,5 @@ st.caption(
 
 st.markdown("---")
 st.caption(
-    "CDS590 Consultancy Project and Practicum • Predictive Modelling under Data Scarcity"
+    "UNIVERSITI SAINS MALAYSIA • CDS590 Consultancy Project and Practicum • Predictive modelling under limited data availability"
 )
